@@ -1,7 +1,7 @@
 # Gaussian Splatting Trainers – Comparative Table
 
-| **Tool Type** | **Name** | **Tags** | **Open Source** | **Platform** | **Input** | **Output Format** | **Output Size** | **Processing Time** | **Entry Guide** | **Notes** |
-|----------|------|------|-------------|----------|-------|---------------|-------------|-----------------|-------------|------------|------|
+| Tool Type | Name | Tags | Open Source | Platform | Input | Output Format | Output Size | Processing Time | Entry Guide | Notes |
+|----------|------|------|-------------|----------|-------|---------------|-------------|-----------------|-------------|------|
 | Trainer + Viewer | **Luma AI** | trainer, online, commercial, web-view | No | Cloud | Video / Images | Proprietary, `.ply` (mesh / point cloud export) | Medium | Medium | Easy | Fully automated cloud-based pipeline |
 | Trainer + Viewer | **Teleport** | trainer, online, commercial, immersive-view | No | Cloud | Video / Images | Proprietary | Medium | Low | Easy | Desktop and VR-oriented cloud-based pipeline |
 | Trainer + Viewer | **Polycam** | trainer, online, mobile, commercial, web-view | No | iOS / Android / Cloud | Video / Images | Multiple 3D formats | Medium | Low | Easy | Mobile and cloud-enabled GS pipeline |
@@ -10,6 +10,8 @@
 | Trainer | **Inria Gaussian Splatting** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | Reference open-source implementation |
 | Trainer | **gsplat** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Variable | High | Medium | Research-oriented framework |
 | Trainer | **Scaffold-GS** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Medium | Medium | Hard | Optimized GS training strategy |
+
+
 
 ## Notes on the Trainers Table
 
