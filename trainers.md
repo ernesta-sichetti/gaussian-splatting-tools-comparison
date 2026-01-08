@@ -5,8 +5,8 @@
 | Trainer + Viewer | **Luma AI** | trainer, online, commercial, web-view | No | Cloud | Video / Images | Proprietary, `.ply` (mesh / point cloud export) | Medium | Medium | Easy | Fully automated cloud-based pipeline |
 | Trainer + Viewer | **Teleport** | trainer, online, commercial, immersive-view | No | Cloud | Video / Images | Proprietary | Medium | Low | Easy | Desktop and VR-oriented cloud-based pipeline |
 | Trainer + Viewer | **Polycam** | trainer, online, mobile, commercial, web-view | No | iOS / Android / Cloud | Video / Images | Multiple 3D formats | Medium | Low | Easy | Mobile and cloud-enabled GS pipeline |
-| Trainer + Viewer | **Postshot** | trainer, desktop, commercial, desktop-view | No | Windows | Images / Video | `.ply`, `.splat` | High | Medium | Medium | Local GS training |
-| Trainer + Viewer | **Scaniverse** | trainer, mobile, commercial, immersive-view | No | iOS | Video | `.splat` | Medium | Low | Easy | On-device GS capture and AR viewing |
+| Trainer + Viewer | **Postshot** | trainer, desktop, commercial, desktop-view | No | Windows | Images / Video | `.ply`, `.spz`, `.psht` | High | Medium | Medium | Local desktop GS training |
+| Trainer + Viewer | **Scaniverse** | trainer, mobile, commercial, immersive-view | No | iOS / Android | Video | `.ply`, `.spz` | Medium | Low | Easy | On-device GS capture and VR viewing |
 | Trainer | **Inria Gaussian Splatting** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | Reference open-source implementation |
 | Trainer | **gsplat** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Variable | High | Medium | Research-oriented framework |
 | Trainer | **Scaffold-GS** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Medium | Medium | Hard | Optimized GS training strategy |
@@ -38,6 +38,10 @@
 - Can import camera poses/points from 3rd-party tools and focus training on region-of-interest.  
 - Models in this work were generated with the **Model Profile Splat3** using **Limit Image Size → 1600px**, **Image Selection → Use Best Images**, **Image Count → 150**, and **Camera poses → Compute From Images**.
 - Provides a command-line interface.
+- Starting from Postshot v1.0, exporting Gaussian Splatting models in `.ply` format is no longer available under the free license; export options are restricted to paid plans.
+
+### Scaniverse
+- Users can explore and interact with splats on mobile and through related VR/WebXR experiences like Into The Scaniverse on Meta Quest.
 
 ### Inria Gaussian Splatting
 - Reference open-source implementation.
