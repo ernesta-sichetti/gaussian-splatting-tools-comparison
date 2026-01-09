@@ -44,11 +44,13 @@
 - Users can explore and interact with splats on mobile and through related VR/WebXR experiences like Into The Scaniverse on Meta Quest.
 
 ### Inria Gaussian Splatting
-- Reference open-source implementation.
-- Provides full control over training parameters.
-- Intended primarily for research use.
+- Reference open-source implementation of Gaussian Splatting introduced in the original research work.
+- Provides full control over training parameters, optimization schedule, and data processing.
+- Relies on external Structure-from-Motion pipelines (e.g., COLMAP) for camera pose estimation.
+- Intended primarily for research, benchmarking, and reproducibility rather than end-user workflows.
 
 ### gsplat
-- Offers fine-grained control over training and optimization.
-- Relies on external SfM pipelines for camera poses.
-- Outputs standard .ply files; visualization via external viewers.
+- Open-source, research-oriented Gaussian Splatting framework designed for modular experimentation.
+- Offers fine-grained control over training strategies, optimization settings, and data preprocessing.
+- Relies on external Structure-from-Motion pipelines for camera pose estimation.
+- Outputs standard .ply Gaussian Splat representations and typically requires external viewers for visualization.
