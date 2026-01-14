@@ -8,7 +8,8 @@
 | Trainer + Viewer | **Postshot** | trainer, desktop, commercial, desktop-view | No | Windows | Images / Video | `.ply`, `.spz`, `.psht` | High | Medium | Medium | Local desktop GS training |
 | Trainer + Viewer | **Scaniverse** | trainer, mobile, commercial, immersive-view | No | iOS / Android | Video | `.ply`, `.spz` | Medium | Low | Easy | On-device GS capture and VR viewing |
 | Trainer | **Inria Gaussian Splatting** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | Reference open-source implementation |
-| Trainer | **gsplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | Research-oriented GS implementation |
+| Trainer | **gsplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | High-performance PyTorch library for GS |
+| Trainer | **OpenSplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images (COLMAP / Nerfstudio) | `.ply` | Variable | Medium | Medium | C++ native GS implementation based on LibTorch |
 | Trainer | **Scaffold-GS** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Medium | Medium | Hard | Optimized GS training strategy |
 
 
@@ -50,7 +51,17 @@
 - Intended primarily for research, benchmarking, and reproducibility rather than end-user workflows.
 
 ### gsplat
-- Open-source, research-oriented Gaussian Splatting framework designed for modular experimentation.
-- Offers fine-grained control over training strategies, optimization settings, and data preprocessing.
-- Relies on external Structure-from-Motion pipelines for camera pose estimation.
-- Outputs standard .ply Gaussian Splat representations and typically requires external viewers for visualization.
+- High-performance, open-source library for Gaussian Splatting designed for modular experimentation and research.
+- Provides optimized CUDA kernels and supports advanced training strategies, such as **MCMC (Markov Chain Monte Carlo)** densification.
+- Built on **PyTorch**, allowing for easy integration with deep learning workflows and custom loss functions.
+- Highly efficient in terms of training speed and VRAM management compared to the original reference implementation.
+
+### OpenSplat
+- A native **C++ implementation** of Gaussian Splatting based on the **LibTorch** (PyTorch C++ frontend) library.
+- Eliminates the need for a Python environment, offering a streamlined, standalone executable for training and processing.
+- Closely follows the original Inria optimization pipeline while providing better portability and integration for production software.
+- Native support for importing project folders from **COLMAP**, **Nerfstudio**, and **OpenMVG** without additional conversion scripts.
+
+### Scaffold-GS
+- Optimized GS training strategy designed to improve structural consistency and rendering quality.
+- Focuses on more efficient point distribution and hierarchical structures to handle complex scenes.
