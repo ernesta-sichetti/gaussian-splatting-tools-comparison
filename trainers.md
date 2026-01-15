@@ -9,6 +9,7 @@
 | Trainer + Viewer | **Scaniverse** | trainer, mobile, commercial, immersive-view | No | iOS / Android | Video | `.ply`, `.spz` | Medium | Low | Easy | On-device GS capture and VR viewing |
 | Trainer | **Inria Gaussian Splatting** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | Reference open-source implementation |
 | Trainer | **gsplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | High-performance PyTorch library for GS |
+| Trainer + Viewer | **Nerfstudio** | trainer, desktop, open-source, framework | Yes | Windows / Linux | Images / Video / COLMAP | `.ply` | Variable | High | Medium | Modular framework with integrated real-time web viewer |
 | Trainer | **OpenSplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images (COLMAP / Nerfstudio) | `.ply` | Variable | Medium | Medium | C++ native GS implementation based on LibTorch |
 | Trainer | **Scaffold-GS** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Medium | Medium | Hard | Optimized GS training strategy |
 
@@ -51,16 +52,23 @@
 - Intended primarily for research, benchmarking, and reproducibility rather than end-user workflows.
 
 ### gsplat
-- High-performance, open-source library for Gaussian Splatting designed for modular experimentation and research.
-- Provides optimized CUDA kernels and supports advanced training strategies, such as **MCMC (Markov Chain Monte Carlo)** densification.
-- Built on **PyTorch**, allowing for easy integration with deep learning workflows and custom loss functions.
-- Highly efficient in terms of training speed and VRAM management compared to the original reference implementation.
+- A high-performance, open-source library for Gaussian Splatting, designed for modular research and experimentation.
+- Acts as the core backend for several high-level frameworks, including **Nerfstudio**.
+- Features highly optimized CUDA kernels and advanced densification strategies such as **MCMC (Markov Chain Monte Carlo)**.
+- Built on **PyTorch**, it offers superior training speeds and memory efficiency compared to the original Inria reference code.
+
+### Nerfstudio
+- A modular framework designed to simplify the end-to-end process of creating, training, and visualizing neural fields.
+- Implements **Splatfacto**, a standardized Gaussian Splatting model that uses the **gsplat** library as its high-performance CUDA backend.
+- Features an integrated **Web Viewer (Viser)** for real-time monitoring of the training process, allowing interactive inspection of densification and rendering parameters.
+- Supports **Camera Pose Refinement**, optimizing camera extrinsics during training to improve reconstruction accuracy from SfM data.
+- Provides a flexible pipeline for data processing and training.
 
 ### OpenSplat
-- A native **C++ implementation** of Gaussian Splatting based on the **LibTorch** (PyTorch C++ frontend) library.
-- Eliminates the need for a Python environment, offering a streamlined, standalone executable for training and processing.
-- Closely follows the original Inria optimization pipeline while providing better portability and integration for production software.
-- Native support for importing project folders from **COLMAP**, **Nerfstudio**, and **OpenMVG** without additional conversion scripts.
+- A standalone **C++ implementation** of the Gaussian Splatting pipeline using **LibTorch**.
+- Key advantage is the **removal of Python dependencies**, resulting in a portable executable suitable for production environments.
+- Strictly follows the original Inria optimization logic while offering a more lightweight architecture.
+- Provides native support for multiple project formats including **COLMAP**, **Nerfstudio**, and **OpenMVG**.
 
 ### Scaffold-GS
 - Optimized GS training strategy designed to improve structural consistency and rendering quality.
