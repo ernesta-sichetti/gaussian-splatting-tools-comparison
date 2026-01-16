@@ -9,12 +9,9 @@
 | Trainer + Viewer | **Scaniverse** | trainer, mobile, commercial, immersive-view | No | iOS / Android | Video | `.ply`, `.spz` | Medium | Low | Easy | On-device GS capture and VR viewing |
 | Trainer | **Inria Gaussian Splatting** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | Reference open-source implementation |
 | Trainer | **gsplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images | `.ply` | Variable | High | Medium | High-performance PyTorch library for GS |
-| Trainer + Viewer | **Nerfstudio** | trainer, desktop, open-source | Yes | Windows / Linux | Images / Video / COLMAP | `.ply` | Variable | High | Medium | Modular framework |
+| Trainer + Viewer | **Nerfstudio** | trainer, desktop, open-source, framework | Yes | Windows / Linux | Images / Video / COLMAP | `.ply` | Variable | High | Medium | Modular framework |
 | Trainer | **OpenSplat** | trainer, desktop, open-source | Yes | Windows / Linux | Images (COLMAP / Nerfstudio) | `.ply` | Variable | Medium | Medium | C++ native GS implementation based on LibTorch |
 | Trainer + Viewer | **LichtFeld Studio** | trainer, desktop, open-source | Yes | Windows / Linux | Images / Video / COLMAP | `.ply`, `.spz`, `.lfs` | Medium | Medium | Medium | Optimized C++ trainer |
-| Trainer | **Scaffold-GS** | trainer, desktop, open-source | Yes | Linux | Images | `.ply` | Medium | Medium | Hard | Optimized GS training strategy |
-
-
 
 ## Notes on the Trainers Table
 
@@ -75,7 +72,3 @@
 - A high-performance, **standalone C++ Gaussian Splatting suite** that integrates training and real-time visualization in a single desktop application.
 - It is the reference implementation for **MCMC (Markov Chain Monte Carlo)** densification strategies, which allow for more efficient point distribution and cleaner reconstructions.
 - Designed as a **portable application** with minimal dependencies, providing a specialized GUI for monitoring training metrics and real-time rendering quality.
-
-### Scaffold-GS
-- Optimized GS training strategy designed to improve structural consistency and rendering quality.
-- Focuses on more efficient point distribution and hierarchical structures to handle complex scenes.
