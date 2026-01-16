@@ -14,44 +14,41 @@
 # 3D Gaussian Splatting: Software Benchmark & Technical Analysis
 
 This study compares five major implementations of **3D Gaussian Splatting (3DGS)** using a standardized indoor dataset of **150 images** and a fixed training budget of **30,000 iterations** on an **NVIDIA RTX 4060**.
+The **standard training pipeline** was used for all implementations.  
+For **LichtFeld Studio**, the **MCMC-based densification pipeline** was enabled
 
 ## 1. Benchmarking Results
 
-| Implementation | Type | Output Size | Points (Est.) | Train Time | Strategy |
-| :--- | :--- | :---: | :---: | :---: | :--- |
-| **LichtFeld Studio** | C++/CUDA | **242 MB** | ~1.1M | 1h 00m | **MCMC Densification** |
-| **Inria GS** | Reference | **231 MB** | ~1.0M | 2h 30m | **Adaptive Density Control** |
-| **gsplat** | Library | **230 MB** | ~1.0M | 50m | Optimized CUDA Kernels |
-| **OpenSplat** | C++/Lean | **123 MB** | ~500k | 1h 00m | Balanced Pruning |
-| **Nerfstudio** | Framework | **41 MB** | **170,150** | 30m | **Adaptive Alpha Culling** |
+
+| Tool | Output (MB) | # Splats | MB / 100k splats | Train Time | Min / 100k splats |Strategy |
+|------|------------:|---------:|----------------:|-----------|-----------------:|--------------------|
+| Inria GS | 231 | 955,819 | 24.2 | 150 min | 15.7 | Standard densification |
+| gsplat | 230 | 1,000,000 | 23.0 | 50 min | 5.0 | Default densification (CUDA ottimizzato) |
+| OpenSplat | 123 | 510,870 | 24.1 | 60 min | 11.7 | Pruning implementazione |
+| Nerfstudio | 43 | 170,150 | 25.3 | 30 min | 17.6 | Adaptive culling + gsplat backend |
+| LichtFeld Studio | 242 | 1,000,000 | 24.2 | 60 min | 6.0 | Pipeline MCMC (opzionale) |
 
 ---
 
 ## 2. Technical Overview & Methodologies
 
 ### LichtFeld Studio (MCMC Strategy)
-LichtFeld implements **3D Gaussian Splatting as Markov Chain Monte Carlo (MCMC)**. Unlike standard heuristics, this method treats Gaussians as samples from a probability distribution. It actively populates "uncertain" areas (e.g., textureless white walls), which significantly increases point density and file size but ensures superior surface coverage for indoor scenes.
-* **Source:** [Kheradmand et al., "3D Gaussian Splatting as Markov Chain Monte Carlo", NeurIPS 2024](https://arxiv.org/abs/2404.09591).
+LichtFeld implements **3D Gaussian Splatting with Markov Chain Monte Carlo (MCMC)**. This pipeline actively densifies Gaussians in uncertain regions (e.g., textureless walls), producing **1,000,000 splats** in **242 MB** over **1h** of training. This ensures dense coverage of indoor scenes but increases file size.  
+* **Source / Info:** [lichtfeld.io](https://lichtfeld.io)
 
 ### Inria GS (Original Reference)
-The original implementation from **Inria** introduced **Adaptive Density Control**. It relies on gradient-based cloning and splitting. While precise, its training speed is limited by 2023-era CUDA kernels compared to modern optimized backends.
-* **Source:** [Kerbl et al., "3D Gaussian Splatting for Real-Time Radiance Field Rendering", SIGGRAPH 2023](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/).
+The original **Inria** implementation uses **Adaptive Density Control**, relying on gradient-based cloning and splitting. It produces **955,819 splats**, 231 MB, in 2h 30m. Precise but slower than modern optimized backends.  
+* **Source / Repo:** [Kerbl et al., SIGGRAPH 2023](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) | [GitHub](https://github.com/graphdeco-inria/gaussian-splatting)
 
 ### gsplat (Optimized Library)
-Developed by the Nerfstudio team, **gsplat** is a highly optimized library for PyTorch. It provides a significant speedup (50m vs 2h30m) by utilizing custom CUDA kernels for the forward and backward rasterization passes while maintaining the fidelity of the original Inria implementation.
-* **Source:** [Ye et al., "gsplat: An Open-Source Library for Gaussian Splatting", JMLR 2025](https://www.jmlr.org/papers/volume26/24-1476/24-1476.pdf).
+**gsplat** is a PyTorch library with CUDA-optimized rasterization. It maintains the fidelity of the Inria implementation while reducing training time to **50 min**, generating **1,000,000 splats** in 230 MB.  
+* **Source / Repo:** [Ye et al., JMLR 2025](https://www.jmlr.org/papers/volume26/24-1476/24-1476.pdf) | [GitHub](https://github.com/nerfstudio-project/gsplat)
 
 ### OpenSplat (Native C++)
-A portable, lean implementation written in **C++**. It focuses on performance and memory efficiency. The reduced output size (123 MB) is a result of more aggressive "pruning" during training, which discards Gaussians with low visual contribution to optimize for faster inference.
-* **Source:** [OpenSplat Repository](https://github.com/pierotofy/OpenSplat).
+A portable C++ implementation focused on speed and memory efficiency. Aggressive pruning reduces the number of splats to **510,870**, producing a 123 MB file in 1h.  
+* **Source / Repo:** [OpenSplat GitHub](https://github.com/pierotofy/OpenSplat)
 
 ### Nerfstudio (Splatfacto)
-The **Splatfacto** model within Nerfstudio is designed for efficiency and developer-friendliness. The small file size (**41 MB**) is primarily due to an **Alpha Cull Threshold** that aggressively removes translucent Gaussians. This makes the models ideal for high-FPS rendering in VR environments.
-* **Source:** [Nerfstudio Documentation - Splatfacto Model](https://docs.nerf.studio/nerfology/methods/splat.html).
+The **Splatfacto** model uses **adaptive alpha culling** to remove low-contribution Gaussians, producing **170,150 splats** in 43 MB over 30 min. Ideal for high-FPS or VR rendering.  
+* **Source / Docs:** [Nerfstudio Documentation](https://docs.nerf.studio/nerfology/methods/splat.html) | [GitHub](https://github.com/nerfstudio-project/nerfstudio)
 
----
-
-## References
-* Kerbl, B., et al. (2023). "3D Gaussian Splatting for Real-Time Radiance Field Rendering". *ACM Transactions on Graphics*.
-* Kheradmand, S., et al. (2024). "3D Gaussian Splatting as Markov Chain Monte Carlo". *NeurIPS*.
-* Ye, V., et al. (2025). "gsplat: An Open-Source Library for Gaussian Splatting". *JMLR*.
