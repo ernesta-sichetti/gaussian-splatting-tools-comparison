@@ -1,4 +1,33 @@
-# Gaussian Splatting Trainers – Comparative Table
+# Confronto Gaussian Splatting – Sintesi Visiva
+
+| Tool | Splats | File .ply | Tempo Training | Adatto VR | Note chiave |
+|------|--------|-----------|----------------|-----------|------------|
+| Nerfstudio | 170k | 43 MB | 30 min | yes | Modello compatto, veloce, ideale per realtime/VR |
+| OpenSplat | 273k | 123 MB | 1h | yes | Compromesso ottimale qualità/prestazioni, struttura chiara, stabile in VR |
+| gsplat | 1M | 230 MB | 50 min | no* | Modelli densi, artefatti, tempi moderati, non ottimizzato per VR |
+| LichtFeld Studio | 1M | 242 MB | 1h | no* | Alta densità, dettagli elevati, sovraccarico GPU in VR |
+| Inria GS | 867k | 231 MB | 2h 30m | no* | Riferimento originale, pulito ma pesante |
+
+\* Non ottimizzato per esperienze immersive realtime.
+
+---
+
+## Punti chiave
+
+- **VR / Unity**: OpenSplat è la scelta migliore, bilancia densità e prestazioni.  
+- **Efficienza**: Nerfstudio molto leggero e rapido, ma ridotta complessità.  
+- **Qualità visiva**: gsplat e LichtFeld Studio producono dettagli elevati ma non sostenibili in VR.  
+- **Distribuzione splats**: OpenSplat separa bene struttura e rumore; altri tool mostrano artefatti o floating points.  
+- **Scopo della scelta**: ottimizzare **comfort visivo, stabilità e framerate** senza sacrificare troppo dettaglio.
+
+---
+
+**Fonti verificate**:  
+- Inria GS – Kerbl et al., SIGGRAPH 2023 ([paper](https://arxiv.org/abs/2308.04079))  
+- OpenSplat – [GitHub](https://github.com/pierotofy/OpenSplat)  
+- Nerfstudio – [GitHub](https://github.com/nerfstudio-project/nerfstudio)  
+- LichtFeld Studio – [sito ufficiale](https://lightfieldlab.com/)  
+- Unity VR Best Practices – [Unity Manual](https://docs.unity3d.com/Manual/VRBestPractice.html), [Meta Quest](https://developer.oculus.com/documentation/unity/unity-performance/)# Gaussian Splatting Trainers – Comparative Table
 
 | Name | Tool Type | Tags | Platform | Processing Time | Output Size | Notes |
 |:-----|:----------|:-----|:---------|:---------------:|:-----------:|:------|
