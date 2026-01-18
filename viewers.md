@@ -1,12 +1,17 @@
 # Gaussian Splatting Viewers – Comparative Table
 
-| Tool Type | Name | Tags | Open Source | Platform | Desktop View | Web View | Immersive View | Real-time | Validation | Notes |
-|----------|------|------|-------------|----------|---------------|-----------|----------------|-----------|------------|------|
-| Viewer (Web) | Luma Web Viewer | viewer, web-view, online, commercial | 🔴 | Browser | 🔴 | 🟢 | 🔴 | 🟢 | Declared (platform) | Compatible only with Luma models |
-| Viewer (Desktop) | Inria Viewer | viewer, desktop-view, open-source | 🟢 | Windows / Linux | 🟢 | 🔴 | 🔴 | 🟡 | Declared (docs) | Reference GS viewer |
-| Viewer (Desktop) | SuperSplat | viewer, desktop-view, open-source | 🟢 | Windows / Linux | 🟢 | 🔴 | 🔴 | 🟢 | Community-reported | Widely used in research |
-| Immersive Viewer (XR) | Teleport Viewer | immersive-view, online, commercial | 🔴 | VR Headsets | 🔴 | 🔴 | 🟢 | 🟢 | Declared (platform) | VR-first GS experience |
-| Immersive Viewer (XR) | Unity GS Viewer | immersive-view, open-source | 🟢 | Unity / XR | 🔴 | 🔴 | 🟢 | 🟡 | Not verified | Experimental research viewers |
-| Viewer (Web) | Three.js GS Viewer | viewer, web-view, open-source | 🟢 | Browser | 🔴 | 🟢 | 🔴 | 🟡 | Not verified | Research / demo implementations |
-| Viewer (Web) | Polycam Web Viewer | viewer, web-view, commercial | 🔴 | Browser | 🔴 | 🟢 | 🔴 | 🟢 | Tested by author | GS playback via web |
-| Viewer (Mobile) | Scaniverse Viewer | viewer, mobile, immersive-view, commercial | 🔴 | iOS | 🔴 | 🔴 | 🟢 | 🟢 | Tested by author | Mobile AR GS viewer |
+| Name | Category | Tags | Open Source | Runtime | Platform | Desktop View | Web View | XR / AR View | Real-time | Notes |
+|------|----------|------|-------------|---------|----------|---------------|-----------|---------------|-----------|-------|
+| SuperSplat | Viewer (Desktop/Web) | desktop, web, viewer | yes | Native app + Web | Windows / Linux / Browser | yes | yes | no | yes | Desktop + browser editor/viewer |
+| Viser (Nerfstudio) | Viewer | desktop, web, viewer, research | yes | Browser UI + Python backend | Windows / Linux / macOS | yes | yes | no | yes | Nerfstudio official viewer |
+| SIBR (Inria) Viewer | Viewer (Desktop) | desktop, viewer, research | yes | C++ / OpenGL | Windows / Linux | yes | no | no | yes | Reference research viewer |
+| UnityGaussianSplatting | Viewer / Renderer (Unity) | unity, viewer | yes | Unity Editor / Unity build | Windows / macOS / Linux | yes | no | no | yes | Unity-based renderer/viewer |
+
+## Viewer Notes
+
+- **SuperSplat**: Desktop and web-based application for viewing Gaussian Splatting models; widely used in research and practical workflows.  
+- **Viser (Nerfstudio)**: Official Nerfstudio viewer; browser UI with Python backend for interactive NeRF and Gaussian Splatting visualization.  
+- **SIBR (Inria) Viewer**: Reference desktop viewer from Inria / GraphDeco; used in academic research for Gaussian Splatting.  
+- **UnityGaussianSplatting**: Unity-based renderer and viewer; real-time visualization of Gaussian Splatting inside Unity Editor or builds.
+
+
